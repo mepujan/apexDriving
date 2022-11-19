@@ -1,6 +1,4 @@
 import jwt from 'jsonwebtoken';
-const SECRET_KEY = "ApexDrivingApp123@";
-
 
 export const LoginRequired = async(req,res, next) => {
     try{
@@ -20,7 +18,7 @@ export const LoginRequired = async(req,res, next) => {
         }
 
     }catch(error){
-        res.status(401).json({message:"Unauthorized User"})
+        res.status(401).json({message:"Unauthorized User"});
     }
 
 }
