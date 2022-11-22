@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import uniqueValidator from "mongoose-unique-validator";
 
 
 const InstructorModelSchema = new mongoose.Schema({
@@ -27,5 +28,7 @@ const InstructorModelSchema = new mongoose.Schema({
         required: true
     }
 });
+
+UserModelSchema.plugin(uniqueValidator);
 
 export default mongoose.model("Schedule", InstructorModelSchema);

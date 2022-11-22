@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import uniqueValidator from 'mongoose-unique-validator';
 
 const UserModelSchema = new mongoose.Schema({
 
@@ -32,7 +33,7 @@ const UserModelSchema = new mongoose.Schema({
     }
 });
 
-
+UserModelSchema.plugin(uniqueValidator);
 
 
 export default mongoose.model("User", UserModelSchema); 
