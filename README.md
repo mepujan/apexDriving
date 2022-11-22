@@ -3,7 +3,7 @@
 Install Packages from package.json
 Before running the server
 
-### `npm install'
+### `npm install`
 
 
 ## Available Scripts
