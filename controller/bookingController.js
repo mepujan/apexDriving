@@ -1,14 +1,16 @@
 import instructor from '../model/Instructor.js';
-import user from '../model/User.js';
 import scheduled from '../model/Scheduled.js';
-import mongoose from "mongoose";
 
 
 export const BookAppointment = async(req,res,next)=>{
     try{
+        console.log(req.body);
         const userId = req.body.user_id;
+        
         const instructorId = req.body.instructor_id;
-        const startTime = new Date(req.body.starting_time);
+        // const startTime = new Date(req.body.booked_schedule.start_time);
+        const startTime = req.body.booked_schedule.start_time;
+        console.log("Start_time=> ",startTime);
         if(userId && instructorId && startTime){
             const Instructor = await instructor.find({_id: instructorId});
             const User = await instructor.find({_id: userId});
