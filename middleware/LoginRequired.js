@@ -1,22 +1,23 @@
 import jwt from 'jsonwebtoken';
+import { config } from '../configuration/config.js';
+
 
 export const LoginRequired = async(req,res, next) => {
     try{
-        const authHeader = req.headers.authorization;
-        if(authHeader){
-            const token = authHeader.split(' ')[1]
-            await jwt.verify(token,SECRET_KEY,(err,user)=>{
-                if(err){
-                    return res.status(401).json({message: "Unauthorized User"});
-                }
-                req.user = user;
-                next();
-            });
+        try{
+            let token = req.headers.authorization;
+            if(token){
+                token = token.split(' ')[1];
+                let user = await jwt.verify(token,config.secret_key);
+                req.userId = user.id;
+            }else{
+                return res.status(401).json({message:"Unauthorized User"});
+            }
+            next();
+    
+        }catch(error){
+            res.status(401).json({message:"Unauthorized User"});
         }
-        else{
-            return res.status(401).json({message: "Unauthorized User"});
-        }
-
     }catch(error){
         res.status(401).json({message:"Unauthorized User"});
     }

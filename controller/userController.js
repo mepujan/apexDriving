@@ -1,5 +1,5 @@
 import user from '../model/User.js';
-import scheduled from '../model/Scheduled.js'
+import scheduled from '../model/Schedule.js'
 
 export const GetAllUsers = async(req,res,next)=>{
     try{

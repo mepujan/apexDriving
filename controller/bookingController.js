@@ -1,42 +1,22 @@
-import instructor from '../model/Instructor.js';
-import scheduled from '../model/Scheduled.js';
+import Schedule from '../model/Schedule.js';
+import scheduled from '../model/Schedule.js';
 
 
 export const BookAppointment = async(req,res,next)=>{
     try{
-        console.log(req.body);
-        const userId = req.body.user_id;
-        
-        const instructorId = req.body.instructor_id;
-        // const startTime = new Date(req.body.booked_schedule.start_time);
-        const startTime = req.body.booked_schedule.start_time;
-        console.log("Start_time=> ",startTime);
-        if(userId && instructorId && startTime){
-            const Instructor = await instructor.find({_id: instructorId});
-            const User = await instructor.find({_id: userId});
-            if(Instructor && User){
-                const endTime = new Date(startTime.getTime() + 60 * 60 * 1000);
-                console.log(startTime);
-                console.log(endTime);
-                const Scheduled = new scheduled({
-                    user: userId,
-                    instructor: instructorId,
-                    booked_schedule:{
-                        start_time:startTime.toISOString(),
-                        end_time:endTime.toISOString()
-                    }
-                })
-
-                console.log(Scheduled);
-                const result = await Scheduled.save();
-                return res.status(200).json({result:result})
-            }else{
-                return res.status(200).json({result:"unknown error"});
-            }
-        }else{
-            return res.status(200).json({result:"unknown error"});
+       const {instructor, booked_scheduled } = req.body;
+       const start_time = new Date(Date.parse(booked_scheduled.start_time));
+       const end_time = new Date(start_time.getTime() + 60 * 60 * 1000);
+       const new_booking = new Schedule({
+        user: req.userId,
+        instructor: instructor,
+        booked_schedule:{
+            start_time:start_time,
+            end_time: end_time
         }
-        
+       });
+       const result = await new_booking.save();
+       return res.status(200).json(result);
     }catch(error){
         console.log(error)
             next(error);
