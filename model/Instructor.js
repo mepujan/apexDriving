@@ -29,6 +29,6 @@ const InstructorModelSchema = new mongoose.Schema({
     }
 });
 
-UserModelSchema.plugin(uniqueValidator);
+InstructorModelSchema.plugin(uniqueValidator);
 
-export default mongoose.model("Schedule", InstructorModelSchema);
+export default mongoose.model("Instructor", InstructorModelSchema);

@@ -11,7 +11,7 @@ const ScheduleModelSchema = new mongoose.Schema({
     
     instructor: {
         type: Schema.Types.ObjectId,
-        ref: "instructor"
+        ref: "Instructor"
     },
 
     booked_schedule: {

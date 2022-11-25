@@ -14,4 +14,4 @@ const AvailabilityModelSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model("Schedule", AvailabilityModelSchema);
+export default mongoose.model("Availability", AvailabilityModelSchema);

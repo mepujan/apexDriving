@@ -3,6 +3,9 @@ import cors from 'cors'
 import bodyParser from 'body-parser';
 
 import authRouter from './routes/authRoutes.js';
+import instructorRouter from './routes/instructorRouter.js';
+import userRouter from './routes/userRoutes.js';
+import bookingRouter from './routes/bookingRoutes.js';
 import connectionDB from './databaseConnection.js';
 import { config } from './configuration/config.js';
 import { ErrorHandler } from './middleware/ErrorHandler.js';
@@ -19,6 +22,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //using middlewares for routes
 app.use(authRouter);
+app.use(instructorRouter);
+app.use(userRouter);
+app.use(bookingRouter);
 app.use(ErrorHandler)
 
 
