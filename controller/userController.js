@@ -12,7 +12,7 @@ export const GetAllUsers = async(req,res,next)=>{
 
 export const GetUserById = async(req,res,next)=>{
     try{
-        const id = req.params.id;
+        const id = req.userId;
         const User = await user.findOne({_id:id});
         return res.status(200).json(User);
     }catch(error){
@@ -22,10 +22,8 @@ export const GetUserById = async(req,res,next)=>{
 
 export const GetBookingByStudentId = async(req,res,next)=>{
     try{
-        const id = req.params.id;
-        console.log("id=" + id);
+        const id = req.userId;
         const Booking = await scheduled.find({user:id});
-        console.log(Booking);
         return res.status(200).json(Booking);
     }catch(error){
             next(error);

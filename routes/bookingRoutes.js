@@ -6,8 +6,8 @@ const bookingRouter = express.Router();
 bookingRouter.post('/booking',LoginRequired,BookAppointment);
 
 //testing only
-bookingRouter.get('/booking/delete/:id',deleteAppoinment);
-bookingRouter.get('/booking/all',getAllAppointment)
+bookingRouter.get('/booking/delete/:id',LoginRequired,deleteAppoinment);
+bookingRouter.get('/booking/all',LoginRequired,getAllAppointment)
 
 export default bookingRouter;
 
