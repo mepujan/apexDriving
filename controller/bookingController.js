@@ -1,5 +1,7 @@
 import Schedule from '../model/Schedule.js';
 import scheduled from '../model/Schedule.js';
+import { sendmail } from '../Sendmail/sendemail.js';
+import User from '../model/User.js'
 
 
 export const BookAppointment = async(req,res,next)=>{
@@ -16,6 +18,8 @@ export const BookAppointment = async(req,res,next)=>{
         }
        });
        const result = await new_booking.save();
+       const user = await User.find({_id : req.userId})
+       sendmail(user[0].email,user[0].user_name,start_time)
        return res.status(200).json(result);
     }catch(error){
         console.log(error)
