@@ -3,9 +3,9 @@ import {GetAllUsers,GetUserById,GetBookingByStudentId} from '../controller/userC
 import { LoginRequired } from '../middleware/LoginRequired.js';
 const userRouter = express.Router();
 
-userRouter.get('/student/all',GetAllUsers);
-userRouter.get('/student',LoginRequired,GetUserById);
-userRouter.get('/student/booking',LoginRequired,GetBookingByStudentId);
+userRouter.get('/api/student/all',GetAllUsers);
+userRouter.get('/api/student',LoginRequired,GetUserById);
+userRouter.get('/api/student/booking',LoginRequired,GetBookingByStudentId);
 
 export default userRouter;
 

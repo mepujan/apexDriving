@@ -3,11 +3,11 @@ import {BookAppointment,deleteAppoinment,getAllAppointment} from '../controller/
 import { LoginRequired } from '../middleware/LoginRequired.js';
 const bookingRouter = express.Router();
 
-bookingRouter.post('/booking',LoginRequired,BookAppointment);
+bookingRouter.post('/api/booking',LoginRequired,BookAppointment);
 
 //testing only
-bookingRouter.get('/booking/delete/:id',LoginRequired,deleteAppoinment);
-bookingRouter.get('/booking/all',LoginRequired,getAllAppointment)
+bookingRouter.get('/api/booking/delete/:id',LoginRequired,deleteAppoinment);
+bookingRouter.get('/api/booking/all',LoginRequired,getAllAppointment)
 
 export default bookingRouter;
 
