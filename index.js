@@ -19,6 +19,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static('build'));
+
+app.get(/^(?!\/api).+/,(req,res) =>{
+    res.sendFile('./build/index.html');
+})
 
 //using middlewares for routes
 app.use(authRouter);
