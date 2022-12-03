@@ -1,0 +1,42 @@
+# fly.toml file generated for apexdriving on 2022-12-03T13:05:35-05:00
+
+app = "apexdriving"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  PORT = "3000"
+  SECRET_KEY = "ApexDrivingApp123@"
+  DATABASE_CONNECTION_STRING = "mongodb+srv://mepujan:AFbDAREHR9HLvgj@cluster0.ve2tabd.mongodb.net/ApexDriving?retryWrites=true&w=majority"
+  SENDMAIL_API_KEY = "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"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 3000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
