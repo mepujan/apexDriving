@@ -88,8 +88,8 @@ export const getInstructorAvailability = async(req,res,next)=>{
 
 export const getInstructorWeeklyAvailability = async(req,res,next)=>{
     try{
-        //get instructor's availability for the input week
-        const startOfWeek = new Date(req.body.startOfWeek);
+        const currentDate = new Date;
+        const startOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
         const id = req.body.id;
         const endOfWeek = add(startOfWeek,{weeks:1});
         const allSchedule = await Schedule.find({
