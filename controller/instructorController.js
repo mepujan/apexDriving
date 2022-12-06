@@ -102,7 +102,8 @@ export const getInstructorWeeklyAvailability = async(req,res,next)=>{
         const availability = await Availability.findOne({instructor:id});
         let availabilityList = [];
         let weekday = 0;
-        availability.weekly_availability.forEach((avail)=>{
+        if (availability){
+            availability.weekly_availability.forEach((avail)=>{
             if(!avail.weekend){
                 let startHour = parseInt(avail.startTime.substr(0,2));
                 let endHour = parseInt(avail.endTime.substr(0,2));
@@ -129,6 +130,8 @@ export const getInstructorWeeklyAvailability = async(req,res,next)=>{
         })
         //return generated timeslot for the week
         return res.status(200).json(availabilityList);
+    }
+    return res.status(403).json({'message':"No availability found."});
     }catch(error){
         console.log(error);
         next(error);
