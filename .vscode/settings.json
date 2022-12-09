@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/1b6617ea-a488-4010-bcc8-af2d6c939b2f/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/apexDriving",
-    "appService.deploySubpath": "."
-}
