@@ -9,13 +9,17 @@ export const sendmail = (email,username,booking_date) => {
     var time = new Date(booking_date);
   const formatted_time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     const email_body = {
-        from: 'mepujan10@gmail.com',
+        from: 'apexdriving78@gmail.com',
         to: email,
         subject: 'Appointment confirmation',
-        text: `
-        Welcome ${username}, 
-        Your booking is confirmed on ${booking_date.toJSON().slice(0, 10)} ${formatted_time}. 
-        Thank you!`,
+        html:`
+            <h3>Welcome ${username}</h3><br/>
+            <p>Your Schedule has been confirmed for the date 
+                <strong>${booking_date.toJSON().slice(0, 10)} at ${formatted_time}</strong>.
+                Please be on time. <br/>
+                Thankyou for choosing Apex Driving.
+            </p>
+        `
     }
     
     pkg.send(email_body)
