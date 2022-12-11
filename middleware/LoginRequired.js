@@ -3,7 +3,6 @@ import { config } from '../configuration/config.js';
 
 
 export const LoginRequired = async(req,res, next) => {
-    try{
         try{
             let token = req.headers.authorization;
             if(token){
@@ -18,8 +17,4 @@ export const LoginRequired = async(req,res, next) => {
         }catch(error){
             res.status(401).json({message:"Unauthorized User"});
         }
-    }catch(error){
-        res.status(401).json({message:"Unauthorized User"});
-    }
-
 }
